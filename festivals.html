@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trashëgimia Kulturore Jomateriale Kineze - Festivalet Tradicionale</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* 基础样式 */
+        
+:root {
+    --primary-color: #c9a227;
+    --secondary-color: #7b1113;
+    --dark-color: #1d1d1d;
+    --light-color: #f6f1e7;
+    --gray-color: #5c5c5c;
+    --white-color: #fff;
+    --black-color: #000;
+    --box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+    --transition: all 0.35s ease;
+}
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Noto Sans SC","Microsoft YaHei",sans-serif;
+            line-height: 1.8;
+            color: var(--dark-color);
+            background: linear-gradient(to bottom,#f6f1e7,#f8f4ec);
+            overflow-x: hidden;
+            letter-spacing: 0.2px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg,#c9a227,#e0bb55);
+            color: #1d1d1d;
+            border: none;
+            border-radius: 999px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(201,162,39,.25);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+        
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 18px;
+            color: var(--secondary-color);
+            font-weight: 900;
+            letter-spacing: .5px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        /* 导航栏 - 与登录注册页面保持一致 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px 0;
+            background: rgba(123,17,19,0.94);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 18px rgba(0,0,0,.15);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .btn-login,
+        .btn-register {
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .btn-login {
+            color: var(--gray-color);
+        }
+        
+        .btn-login:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn-register {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+        
+        .btn-register:hover {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+        }
+        
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* 子页面横幅 */
+        .subpage-banner {
+            height: 400px;
+            background: url('./images/banner1.jpg') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-top: 70px;
+            text-align: center;
+        }
+        
+        .subpage-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0,0,0,.35),rgba(123,17,19,.68));
+        }
+        
+        .subpage-banner-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white-color);
+            width: 100%;
+        }
+        
+        .subpage-banner-content h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--white-color);
+            opacity: 0.8;
+        }
+        
+        .breadcrumb a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            margin: 0 10px;
+            opacity: 0.8;
+        }
+        
+        /* 节日时间线 */
+        .festival-timeline {
+            padding: 80px 0;
+        }
+        
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white-color);
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 24px;
+            background: rgba(255,255,255,.96);
+            border-radius: 22px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .timeline-content p {
+            color: var(--gray-color);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-image {
+            margin-top: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        /* 节日分类展示 */
+        .festival-categories {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .category-card {
+            background-color: rgba(255,255,255,0.92);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(201,162,39,.15);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .category-info {
+            padding: 20px;
+        }
+        
+        .category-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .category-info p {
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+        
+        /* 节日详情部分 */
+        .festival-details {
+            padding: 80px 0;
+            background-color: var(--white-color);
+        }
+        
+        .detail-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detail-tab {
+            padding: 10px 25px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--gray-color);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .detail-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .detail-tab:hover,
+        .detail-tab.active {
+            color: var(--secondary-color);
+        }
+        
+        .detail-tab.active::after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .festival-content {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .festival-text {
+            flex: 1;
+        }
+        
+        .festival-text h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 15px;
+            color: var(--secondary-color);
+        }
+        
+        .festival-text ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .festival-text li {
+            margin-bottom: 10px;
+        }
+        
+        .festival-gallery {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .festival-gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .festival-gallery img:hover {
+            transform: scale(1.03);
+        }
+        
+        /* 手风琴效果 */
+        .accordion-section {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .accordion-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .accordion-item {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .accordion-header {
+            padding: 15px 20px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .accordion-header:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .accordion-header i {
+            transition: var(--transition);
+        }
+        
+        .accordion-header.active i {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-content {
+            padding: 0;
+            background-color: var(--white-color);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .accordion-content-inner {
+            padding: 20px;
+        }
+        
+        /* 页脚 */
+        .footer {
+            background: linear-gradient(135deg,#2b0b0b,#4b1113);
+            color: #ddd;
+            padding: 70px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: var(--white-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:42px;
+            height:42px;
+            background:rgba(255,255,255,.08);
+            color:#fff;
+            border-radius:50%;
+            transition:var(--transition);
+            backdrop-filter: blur(6px);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #aaa;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-col i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+        }
+        
+        /* 返回顶部按钮 */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        #back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        
+.timeline-content:hover,
+.category-card:hover{
+    transform:translateY(-8px);
+}
+
+.category-info h3,
+.timeline-content h3,
+.footer-col h3{
+    font-weight:800;
+}
+
+.timeline-date{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:999px;
+    background:rgba(201,162,39,.15);
+    color:var(--secondary-color);
+    font-weight:800;
+}
+
+.accordion-header{
+    background:linear-gradient(135deg,#7b1113,#a01d22)!important;
+    font-weight:800;
+}
+
+.detail-tab{
+    border-radius:999px;
+    background:#f1e4ca;
+    margin:0 6px;
+    font-weight:700;
+}
+
+.detail-tab.active{
+    background:#7b1113;
+    color:#fff;
+}
+
+
+
+.nav-container{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.nav-links{
+display:flex;
+gap:28px;
+list-style:none;
+align-items:center;
+}
+
+.nav-links li{
+list-style:none;
+}
+
+.nav-links a{
+color:#fff;
+font-weight:700;
+position:relative;
+transition:var(--transition);
+}
+
+.nav-links a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-6px;
+width:0;
+height:2px;
+background:var(--primary-color);
+transition:var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+width:100%;
+}
+
+.logo{
+text-decoration:none;
+}
+
+/* 响应式设计 */
+        @media (max-width: 992px) {
+            .subpage-banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .festival-content {
+                flex-direction: column;
+            }
+            
+            .festival-gallery {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .subpage-banner {
+                height: 350px;
+            }
+            
+            .subpage-banner-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 18px;
+            color: var(--secondary-color);
+            font-weight: 900;
+            letter-spacing: .5px;
+        }
+            
+            .timeline-container::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after,
+            .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .festival-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .subpage-banner {
+                height: 300px;
+            }
+            
+            .subpage-banner-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .detail-tab {
+                padding: 8px 15px;
+                font-size: 1rem;
+            }
+            
+            .festival-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 - 与登录注册页面保持一致 -->
+    
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="index.html" class="logo">Megji<span>Kina</span></a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Shtëpi</a></li>
+            <li><a href="exchange.html">Shkëmbime kulturore</a></li>
+            <li><a href="timeline.html">Historia kino-shqiptare</a></li>
+            <li><a href="china.html">Kultura kineze</a></li>
+            <li><a href="festivals.html" class="active">Festat tradicionale</a></li>
+            <li><a href="media.html">Mediat sociale</a></li>
+        </ul>
+
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- 子页面横幅 -->
+    <section class="subpage-banner">
+        <div class="subpage-banner-overlay"></div>
+        <div class="container">
+            <div class="subpage-banner-content">
+                <h1>Festat tradicionale kineze</h1>
+                <div class="breadcrumb">
+                    <a href="index.html">Shtëpi</a>
+                    <span>/</span>
+                    <a href="festivals.html">Festivalet tradicionale</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 节日时间线 -->
+    <section class="festival-timeline">
+        <div class="container">
+            <h2 class="section-title">Kronologjia e Festivaleve Tradicionale Kineze</h2>
+            <div class="timeline-container">
+                <!-- 春节 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dita e Vitit të Ri Hënor</div>
+                        <h3>春节 Chunjie
+                        </h3>
+                        <p>Festa më e rëndësishme tradicionale në Kinë, e njohur zakonisht si "Viti i Ri Kinez", ka një histori prej mbi 4,000 vjetësh. Festimet gjatë Festës së Pranverës janë jashtëzakonisht të pasura dhe të larmishme, duke përfshirë zakone të tilla si ngjitja e dyvargëshave të Festës së Pranverës, qëndrimi zgjuar deri vonë në natën e Vitit të Ri, vizitat e Vitit të Ri dhe ndezja e fishekzjarreve.</p>
+                        <div class="timeline-image">
+                            <img src="./images/banner1.jpg" alt="春节">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 元宵节 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dita e pesëmbëdhjetë e muajit të parë hënor</div>
+                        <h3>元宵节 Yuan Xiao Jie</h3>
+                        <p>Festa e Fenerëve është një festival tradicional në Kinë, në sferën kulturore të karakterit kinez dhe midis komuniteteve kineze jashtë vendit. Ai përfshin kryesisht një sërë aktivitetesh tradicionale popullore, të tilla si vlerësimi i fenerëve, ngrënia e topave të orizit ngjitës, zgjidhja e gjëegjëzave me fenerët dhe ndezja e fishekzjarrëve.</p>
+                        <div class="timeline-image">
+                            <img src="./images/banner2.jpg" alt="元宵节">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 清明节 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">4-6 Prill </div>
+                        <h3>清明节 Qing Ming Jie</h3>
+                        <p>Festivali Qingming është një festival i madh tradicional pranveror për adhurimin e paraardhësve, dhe pastrimi i varreve për t'u bërë nderime paraardhësve është një traditë e shkëlqyer e kombit kinez që nga kohërat e lashta. Zakone të tjera gjatë Qingming përfshijnë daljet në pranverë, mbjelljen e degëve të shelgut dhe lëkundjen në lëkundëse.</p>
+                        <div class="timeline-image">
+                            <img src="./images/banner3.jpg" alt="清明节">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 端午节 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dita e pestë e muajit të pestë hënor</div>
+                        <h3>端午节 Duan Wu Jie</h3>
+                        <p>Festivali i Varkës së Dragoit e ka origjinën nga adhurimi qiellor dhe evoluoi nga sakrificat e lashta të dragonjve, të përdorura më vonë për të përkujtuar Qu Yuan. Zakonet kryesore përfshijnë garat me varka dragonjsh, ngrënien e zongzi-ve (qofte orizi ngjitëse), varjen e mugworth-it dhe veshjen e qeseve, të gjitha që simbolizojnë largimin e shpirtrave të këqij dhe sëmundjeve.</p>
+                        <div class="timeline-image">
+                            <img src="./images/b.jpg" alt="端午节">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 七夕节 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dita e shtatë e muajit të shtatë hënor</div>
+                        <h3>七夕节 Qi Xi Jie</h3>
+                        <p>Festivali Qixi evoluoi nga adhurimi i yjeve dhe tradicionalisht konsiderohet ditëlindja e Shtatë Motrave. Quhet "Qixi" sepse adhurimi i Shtatë Motrave zhvillohet në mbrëmjen e ditës së shtatë të muajit të shtatë hënor. Me kalimin e kohës, Festivali Qixi është mbushur me legjendën e bukur të dashurisë midis Bariut dhe Vajzës Endëse.</p>
+                        <div class="timeline-image">
+                            <img src="./images/banner4.jpg" alt="七夕节">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中秋节 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">15 gushti i kalendarit hënor</div>
+                        <h3>中秋节 Zhong Qiu Jie</h3>
+                        <p>Festa e Mesvjeshtës e ka origjinën nga adhurimi qiellor dhe evoluoi nga adhurimi i lashtë i hënës në mbrëmjen e vjeshtës. Që nga kohërat e lashta, ka pasur zakone popullore si adhurimi i hënës, shikimi i hënës, ngrënia e ëmbëlsirave të hënës, loja me fenerë dhe vlerësimi i luleve osmanthus, të cilat janë përcjellë deri në ditët e sotme dhe vazhdojnë edhe sot e kësaj dite.</p>
+                        <div class="timeline-image">
+                            <img src="./images/banner5.jpg" alt="中秋节">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 重阳节 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dita e nëntë e muajit të nëntë hënor</div>
+                        <h3>重阳节 Chong Yang Jie</h3>
+                        <p>Festa e Dyfishtë e Nëntës e ka origjinën nga adhurimi qiellor, filloi në kohët e lashta, u përhap gjerësisht në Dinastinë Han Perëndimore dhe arriti kulmin pas Dinastisë Tang. Në kohët e lashta, zakonet popullore të Festës së Dyfishtë të Nëntës përfshinin ngjitjen në male për t'u lutur për bekime, daljet në vjeshtë për të vlerësuar krizantemat, veshjen e luleve të qershisë, adhurimin e perëndive dhe paraardhësve dhe mbajtjen e banketeve për t'u lutur për jetëgjatësi.</p>
+                        <div class="timeline-image">
+                            <img src="./images/banner6.jpg" alt="重阳节">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 节日分类展示 -->
+    <section class="festival-categories">
+        <div class="container">
+            <h2 class="section-title">Klasifikimi i Festave</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="./images/banner1.jpg" alt="春节相关">
+                    <div class="category-info">
+                        <h3>Lidhur me Festivalin e Pranverës</h3>
+                        <p>Festat tradicionale që lidhen me Vitin e Ri Hënor, duke përfshirë Festën e Pranverës dhe Festën e Fenerëve, përbëjnë serinë më të rëndësishme të festave në Kinë.</p>
+                        <a href="#spring" class="btn btn-primary">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="./images/banner7.jpg" alt="节气节日">
+                    <div class="category-info">
+                        <h3>Kushtet dhe Festivalet Diellore</h3>
+                        <p>Festat tradicionale që lidhen me 24 termat diellorë, të tilla si Festivali Qingming dhe Solstici i Dimrit, pasqyrojnë kuptimin e lashtësisë për natyrën.</p>
+                        <a href="#solar" class="btn btn-primary">查看详情</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="./images/banner8.jpg" alt="民间节日">
+                    <div class="category-info">
+                        <h3>Festivale popullore</h3>
+                        <p>Festa tradicionale që festohen gjerësisht në popull, të tilla si Festa e Varkës së Dragoit, Festa Qixi, Festa e Mesvjeshtës dhe Festa e Dyfishtë e Nëntë.</p>
+                        <a href="#folk" class="btn btn-primary">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 节日详情部分 -->
+    <section class="festival-details" id="details">
+        <div class="container">
+            <h2 class="section-title">Detajet e Festivalit të Pranverës</h2>
+            <div class="detail-tabs">
+                <button class="detail-tab active" data-tab="origin">Historia e Origjinës</button>
+                <button class="detail-tab" data-tab="customs">Zakonet tradicionale</button>
+                <button class="detail-tab" data-tab="culture">Rëndësia kulturore</button>
+            </div>
+            
+            <div id="origin" class="tab-content active">
+                <div class="festival-content">
+                    <div class="festival-text">
+                        <h3>Origjina historike e Festës së Pranverës</h3>
+                        <p>Origjina e Festës së Pranverës përmban konotacione të thella kulturore dhe mbart një trashëgimi të pasur historike dhe kulturore në trashëgiminë dhe zhvillimin e saj. Në epokën e hershme të vëzhgimit të fenomeneve qiellore dhe përcaktimit të kohës, viti përcaktohej nga lëvizja e Arushës së Madhe dhe yjeve, me "dorezën e Arushës së Madhe që kthehet në Jin" që shënonte fillimin e vitit. "Doreza e Arushës së Madhe që kthehet në Jin" nënkupton kthimin e pranverës në tokë, fillimin e një cikli të ri, ripërtëritjen e të gjitha gjërave dhe fillimin e një epoke të re.</p>
+                        
+                        <h3>Zhvillimi dhe Evolucioni</h3>
+                        <p>Në shoqëritë tradicionale agrare, fillimi i pranverës (Lichun) kishte një rëndësi të madhe, duke i dhënë shkas një mori zakonesh dhe traditash të lidhura me Vitin e Ri. Edhe pse ndarja e festave sezonale nga festat ndodhi më vonë për shkak të adoptimit të sistemit kalendarik hënor-diellor, shumë zakone sezonale janë ruajtur.</p>
+                        <p>Festa e Pranverës evoluoi nga lutja dhe sakrifica e Vitit të Ri. Në kohët e lashta, njerëzit zhvillonin aktivitete sakrifice në fillim të vitit, kur pranvera kthehej në tokë, fundi ishte fillimi dhe gjithçka ripërtërihej, për të shpërblyer mirësinë e perëndive të qiellit dhe të tokës dhe të paraardhësve të tyre, për të larguar të keqen dhe fatkeqësitë dhe për t'u lutur për fat të mirë dhe një vit të mbarë.</p>
+                    </div>
+                    <div class="festival-gallery">
+                        <img src="./images/banner1.jpg" alt="春节历史1">
+                        <img src="./images/banner9.jpg" alt="春节历史2">
+                        <img src="./images/banner10.jpg" alt="春节历史3">
+                        <img src="./images/banner11.jpg" alt="春节历史4">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="customs" class="tab-content">
+                <div class="festival-content">
+                    <div class="festival-text">
+                        <h3>Zakonet kryesore tradicionale</h3>
+                        <ul>
+                            <li><strong>扫尘 Sao Chen</strong>：Tema kryesore e përgatitjeve para Vitit të Ri është të heqësh qafe të vjetrën dhe të mirëpresësh të renë, dhe pastrimi i pluhurit është një nga zakonet e Vitit të Ri. Siç thotë shprehja popullore, "Në ditën e 24-të të muajit të dymbëdhjetë hënor, fshij pluhurin dhe pastro shtëpinë".</li>
+                            <li><strong>贴年红 Tie Nian Hong</strong>：Më 28, 29 ose 30 të vitit hënor, çdo familje "ngjit Vitin e Ri me të kuqe" (e kuqja e Vitit të Ri është një term i përgjithshëm për elementët festivë të kuq të ngjitur gjatë Festës së Pranverës, siç janë dyvargëshat e Festës së Pranverës, perënditë e derës, rrotullat horizontale, fotografitë e Vitit të Ri dhe personazhi "福（Fu）").</li>
+                            <li><strong>年夜饭 Nian Ye Fan</strong>：Darka e Vitit të Ri, e njohur edhe si darka e ribashkimit, është një mbledhje familjare për darkë në natën e Vitit të Ri (një ditë para Festivalit të Pranverës).</li>
+                            <li><strong>守岁 Shou Sui</strong>：Të qëndrosh zgjuar deri vonë në natën e Vitit të Ri është një nga zakonet tradicionale të Festës së Pranverës dhe ky zakon ka një histori të gjatë. Zakoni kryesor i të qëndruarit zgjuar deri vonë në natën e Vitit të Ri është që dritat të mbahen ndezur gjithë natën, gjë që quhet "ndezja e llambave për të ndriçuar vitin".</li>
+                            <li><strong>拜年 Bai Nian</strong>：Vizitat e Vitit të Ri janë një nga aktivitetet dhe zakonet më të rëndësishme të Festës së Pranverës. Në mëngjesin e ditës së parë të Vitit të Ri Hënor, të rriturit dhe fëmijët veshin rroba dhe kapele të reja, vizitojnë të afërmit dhe miqtë, shkëmbejnë urime për Vitin e Ri dhe i urojnë njëri-tjetrit një vit të ri të begatë dhe të mbarë.</li>
+                        </ul>
+                    </div>
+                    <div class="festival-gallery">
+                        <img src="./images/banner1.jpg" alt="春节历史1">
+                        <img src="./images/banner9.jpg" alt="春节历史2">
+                        <img src="./images/banner10.jpg" alt="春节历史3">
+                        <img src="./images/banner11.jpg" alt="春节历史4">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="culture" class="tab-content">
+                <div class="festival-content">
+                    <div class="festival-text">
+                        <h3>Rëndësia kulturore</h3>
+                        <p>Festa e Pranverës është festivali tradicional më i rëndësishëm dhe më madhështor i Kinës, një karnaval vjetor dhe një shtyllë shpirtërore e qëndrueshme për kombin kinez. Është një nga katër festivalet kryesore tradicionale kineze, së bashku me Festën Qingming, Festën e Varkës së Dragoit dhe Festën e Mesvjeshtës.</p>
+                        
+                        <h3>Mbrojtja e trashëgimisë kulturore jomateriale</h3>
+                        <p>Më 20 maj 2006, zakonet popullore të Festës së Pranverës u përfshinë në grupin e parë të listës kombëtare të trashëgimisë kulturore jomateriale me miratimin e Këshillit të Shtetit. Si një pjesë e rëndësishme e kulturës tradicionale kineze, kultura e Festës së Pranverës mbart një trashëgimi të pasur historike dhe kulturore dhe pasqyron jetën shoqërore dhe botën shpirtërore të popullit të lashtë.</p>
+                        
+                        <h3>Ndikim ndërkombëtar</h3>
+                        <p>Ndërsa ndikimi i Kinës rritet, Festa e Pranverës po bëhet gradualisht një festë globale. Sipas statistikave të paplota, gati 20 vende dhe rajone e kanë përcaktuar Festën e Pranverës Kineze si një festë statutore për të gjithë ose për disa nga qytetet e tyre.</p>
+                    </div>
+                    <div class="festival-gallery">
+                        <img src="./images/banner1.jpg" alt="春节历史1">
+                        <img src="./images/banner9.jpg" alt="春节历史2">
+                        <img src="./images/banner10.jpg" alt="春节历史3">
+                        <img src="./images/banner11.jpg" alt="春节历史4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 手风琴效果部分 -->
+    <section class="accordion-section">
+        <div class="container">
+            <h2 class="section-title">Pyetje të Shpeshta rreth Festave</h2>
+            <div class="accordion-container">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Pse Festa e Pranverës është festivali më i rëndësishëm tradicional në Kinë?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Festa e Pranverës është festa tradicionale më e rëndësishme e Kinës, sepse shënon fillimin e vitit dhe simbolizon shpresë dhe vitalitet të ri. Historia e saj është e gjatë, duke filluar që nga ritet e flijimit për perënditë dhe paraardhësit në fund të vitit gjatë dinastive Yin dhe Shang. Gjatë Festës së Pranverës, zakonet tradicionale si ribashkimet familjare, adhurimi i paraardhësve dhe lutjet për bekime, lamtumira e vitit të vjetër dhe mirëpritja e të riut, si dhe lutja për një korrje të bollshme pasqyrojnë vlerat kulturore të popullit kinez për vlerësimin e familjes, respektimin e të moshuarve dhe kujdesin për të rinjtë, si dhe lutjen për paqe dhe lumturi.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Pse hamë zongzi (petulla orizi ngjitëse) gjatë Festivalit të Varkës së Dragoit?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Zakoni i ngrënies së zongzi-ve (petulla orizi ngjitëse) gjatë Festivalit të Varkës së Dragoit lidhet me përkujtimin e Qu Yuan. Legjenda thotë se pasi Qu Yuan u mbyt në lumë, vendasit hodhën petulla orizi në lumë për të parandaluar peshqit dhe karkalecat të hanin trupin e tij. Kjo më vonë evoluoi në prodhimin e zongzi-ve duke mbështjellë orizin ngjitës në gjethe bambuje dhe duke i hedhur ato në lumë. Zongzi-të fillimisht përdoreshin si oferta, por gradualisht u bënë një ushqim karakteristik i Festivalit të Varkës së Dragoit. Zongzi-të ndryshojnë në formë, mbushje dhe shije në rajone të ndryshme, duke formuar një kulturë të pasur dhe të larmishme zongzi.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Pse Festivali i Mes-Vjeshtës quhet edhe Festivali i Ribashkimit?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Festa e Mes-Vjeshtës njihet edhe si Festa e Ribashkimit, kryesisht sepse hëna është në formën e saj më të plotë dhe më të ndritshme në këtë ditë, duke simbolizuar ribashkimin familjar dhe lumturinë. Me origjinë nga adhurimi i lashtë i hënës, festa më vonë evoluoi në një festë të tubimeve familjare. Në këtë ditë, pavarësisht se ku ndodhen njerëzit, ata përpiqen me të gjitha forcat të kthehen në shtëpi për t'u ribashkuar me të dashurit e tyre, të admirojnë hënën e ndritshme dhe të shijojnë ëmbëlsirat e hënës, duke shprehur mallin e tyre për familjen dhe një jetë së bashku. Ky konotacion kulturor i hënës së plotë që simbolizon ribashkimin familjar e bën Festën e Mes-Vjeshtës një festë të rëndësishme për kinezët që i vlerësojnë tubimet familjare.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Cila është rëndësia kulturore e zakonit të pastrimit të varreve të Festivalit Qingming?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Zakoni i pastrimit të varreve gjatë Festës Qingming mishëron virtytin tradicional kinez të "kujtimit të të ndjerëve dhe nderimit të paraardhësve". Ky zakon e ka origjinën nga Festivali i lashtë Hanshi dhe më vonë u bashkua me Festivalin Qingming. Pastrimi i varreve nuk është vetëm një shprehje kujtimi për të afërmit e ndjerë, por edhe një mënyrë e rëndësishme për të përcjellë kulturën e devotshmërisë filiale. Përmes pastrimit të varreve dhe adhurimit të paraardhësve, njerëzit kujtojnë meritat e paraardhësve të tyre, përcjellin kujtimet familjare dhe forcojnë kohezionin familjar. Në të njëjtën kohë, pastrimi i varreve gjatë Qingming pasqyron gjithashtu kuptimin unik kinez të jetës dhe vdekjes, duke besuar se ekziston një lidhje e caktuar midis të ndjerit dhe të gjallëve, duke mishëruar mendimin filozofik të "harmonisë midis qiellit dhe njeriut".</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>rreth nesh</h3>
+                    <p>Të përkushtuar ndaj mbrojtjes, trashëgimisë dhe promovimit të trashëgimisë kulturore jomateriale, në mënyrë që kultura tradicionale të mund të rigjallërohet në shoqërinë moderne.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin" style="margin-left: 10px;"></i></a>
+                        <a href="#"><i class="fab fa-weibo" style="margin-left: 10px;"></i></a>
+                        <a href="#"><i class="fab fa-qq" style="margin-left: 10px;"></i></a>
+                        <a href="#"><i class="fab fa-tiktok" style="margin-left: 10px;"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Lidhje të Shpejta</h3>
+                    <ul>
+                        <li><a href="index.html">Shtëpi</a></li>
+                        <li><a href="about.html">Lidhur me trashëgiminë kulturore jomateriale</a></li>
+                        <li><a href="categories.html">Klasifikimi i trashëgimisë kulturore jomateriale</a></li>
+                        <li><a href="masters.html">pasardhës</a></li>
+                        <li><a href="techniques.html">Zanat tradicionale</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>burim</h3>
+                    <ul>
+                        <li><a href="#">Lista e Trashëgimisë Kulturore Jomateriale</a></li>
+                        <li><a href="#">agjencitë e mbrojtjes</a></li>
+                        <li><a href="#">Politikat dhe Rregulloret</a></li>
+                        <li><a href="#">Raporti i Kërkimit</a></li>
+                        <li><a href="#">Dokumente</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Na Kontaktoni</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Universiteti i Studimeve të Huaja i Pekinit</p>
+                    <p><i class="fas fa-phone"></i> 010-12345678</p>
+                    <p><i class="fas fa-envelope"></i> Megjikina123@126.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Megjikina</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" title="返回顶部"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        $(document).ready(function() {
+            // 导航栏滚动效果
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                }
+                
+                // 返回顶部按钮显示/隐藏
+                if ($(this).scrollTop() > 300) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            
+            // 返回顶部按钮
+            $('#back-to-top').click(function() {
+                $('html, body').animate({scrollTop: 0}, 800);
+                return false;
+            });
+            
+            // 移动端菜单切换
+            $('.hamburger').click(function() {
+                $('.nav-links').toggleClass('active');
+                $(this).find('i').toggleClass('fa-times');
+            });
+            
+            // 关闭移动菜单当点击链接
+            $('.nav-links a').click(function() {
+                $('.nav-links').removeClass('active');
+                $('.hamburger i').removeClass('fa-times');
+            });
+            
+            // 标签页切换
+            $('.detail-tab').click(function() {
+                // 移除所有active类
+                $('.detail-tab').removeClass('active');
+                $('.tab-content').removeClass('active');
+                
+                // 添加active类到当前按钮和对应内容
+                $(this).addClass('active');
+                const tabId = $(this).attr('data-tab');
+                $('#' + tabId).addClass('active');
+            });
+            
+            // 手风琴效果
+            $('.accordion-header').click(function() {
+                // 如果当前项已经是active，则关闭它
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $(this).next('.accordion-content').css('max-height', '0');
+                } else {
+                    // 关闭所有其他项
+                    $('.accordion-header').removeClass('active');
+                    $('.accordion-content').css('max-height', '0');
+                    
+                    // 打开当前项
+                    $(this).addClass('active');
+                    const content = $(this).next('.accordion-content');
+                    const innerHeight = content.find('.accordion-content-inner').outerHeight();
+                    content.css('max-height', innerHeight + 'px');
+                }
+            });
+            
+            // 平滑滚动
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                
+                const target = $($(this).attr('href'));
+                if (target.length) {
+                    const navbarHeight = $('.navbar').outerHeight();
+                    const targetPosition = target.offset().top - navbarHeight;
+                    
+                    $('html, body').animate(
+                        { scrollTop: targetPosition },
+                        800,
+                        'swing'
+                    );
+                }
+            });
+        });
+    </script>
+</body>
+</html>

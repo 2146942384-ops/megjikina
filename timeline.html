@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>历史脉络</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--china-red:#9F1D22;
+--forbidden-red:#7B1113;
+--imperial-gold:#C9A227;
+--ink:#1D1D1D;
+--jade:#2E5E4E;
+--silk:#F6F1E7;
+--shadow:0 12px 35px rgba(0,0,0,.14);
+}
+body{
+font-family:"Noto Sans SC","Microsoft YaHei",sans-serif;
+background:var(--silk);
+color:var(--ink);
+line-height:1.8;
+}
+a{text-decoration:none;color:inherit}
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+padding:18px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(123,17,19,.94);
+backdrop-filter:blur(10px);
+z-index:999;
+}
+.logo{
+font-size:1.9rem;
+font-weight:900;
+color:#fff;
+letter-spacing:2px;
+}
+.logo span{color:var(--imperial-gold)}
+.nav-links{
+display:flex;
+gap:28px;
+}
+.nav-links a{
+color:#fff;
+font-weight:600;
+position:relative;
+}
+.nav-links a:after{
+content:'';
+position:absolute;
+bottom:-5px;
+left:0;
+width:0;
+height:2px;
+background:var(--imperial-gold);
+transition:.3s;
+}
+.nav-links a:hover:after{width:100%}
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+padding:0 8%;
+background-size:cover;
+background-position:center;
+position:relative;
+}
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.6));
+}
+.hero-content{
+position:relative;
+max-width:760px;
+color:white;
+}
+.hero-tag{
+display:inline-block;
+padding:8px 18px;
+border:1px solid rgba(255,255,255,.4);
+border-radius:999px;
+margin-bottom:22px;
+backdrop-filter:blur(8px);
+}
+.hero h1{
+font-size:5rem;
+line-height:1.08;
+margin-bottom:26px;
+font-weight:900;
+}
+.hero p{
+font-size:1.2rem;
+max-width:650px;
+opacity:.92;
+margin-bottom:34px;
+}
+.btn{
+display:inline-block;
+padding:14px 30px;
+background:var(--imperial-gold);
+color:#111;
+border-radius:999px;
+font-weight:800;
+transition:.3s;
+}
+.btn:hover{transform:translateY(-4px)}
+.section{
+padding:100px 8%;
+}
+.section-title{
+font-size:3rem;
+margin-bottom:18px;
+color:var(--forbidden-red);
+}
+.section-sub{
+max-width:900px;
+color:#555;
+margin-bottom:48px;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:32px;
+}
+.card{
+background:white;
+border-radius:24px;
+overflow:hidden;
+box-shadow:var(--shadow);
+transition:.35s;
+}
+.card:hover{transform:translateY(-8px)}
+.card img{
+width:100%;
+height:260px;
+object-fit:cover;
+}
+.card-content{
+padding:28px;
+}
+.card-content h3{
+margin-bottom:14px;
+font-size:1.6rem;
+color:var(--forbidden-red);
+}
+.banner{
+height:60vh;
+display:flex;
+align-items:center;
+padding:0 8%;
+background-size:cover;
+background-position:center;
+position:relative;
+margin-top:80px;
+}
+.banner::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.45);
+}
+.banner-content{
+position:relative;
+color:white;
+max-width:700px;
+}
+.banner h1{
+font-size:4rem;
+margin-bottom:18px;
+}
+.timeline-item{
+background:white;
+padding:34px;
+border-left:8px solid var(--imperial-gold);
+border-radius:20px;
+margin-bottom:28px;
+box-shadow:var(--shadow);
+}
+.footer{
+background:#2B0B0B;
+color:#ddd;
+padding:70px 8%;
+}
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:40px;
+}
+.social{
+display:flex;
+gap:14px;
+margin-top:18px;
+}
+.social a{
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(255,255,255,.1);
+color:white;
+}
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:24px;
+}
+.gallery img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:22px;
+box-shadow:var(--shadow);
+}
+
+.timeline-item h3:first-child{
+font-size:1.45rem;
+color:var(--forbidden-red);
+margin-bottom:6px;
+}
+.timeline-item h3:nth-child(2){
+font-size:1.25rem;
+color:var(--jade);
+margin-bottom:16px;
+}
+.timeline-item p{
+margin-bottom:10px;
+}
+.timeline-item ul{
+margin:12px 0 12px 22px;
+}
+.timeline-item li{
+margin-bottom:6px;
+}
+.timeline-label{
+display:inline-block;
+padding:5px 13px;
+border-radius:999px;
+background:rgba(201,162,39,.18);
+color:var(--forbidden-red);
+font-weight:800;
+font-size:.9rem;
+margin-bottom:14px;
+}
+
+@media(max-width:768px){
+.nav-links{display:none}
+.hero h1{font-size:2.9rem}
+.banner h1{font-size:2.6rem}
+.section-title{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div class="logo">Megji<span>Kina</span></div>
+<div class="nav-links">
+<a href="index.html">Shtëpia</a>
+<a href="exchange.html">Shkëmbime kulturore kino-shqiptare</a>
+<a href="timeline.html">Historia kino-shqiptare</a>
+<a href="china.html">Kultura Kineze</a>
+<a href="media.html">Mediat Sociale</a>
+</div>
+</nav>
+
+
+<section class="banner" style="background-image:url('https://pic3.zhimg.com/v2-95fef5defcb412e24f87a88b81936616_r.jpg')">
+<div class="banner-content">
+<h1>Historia kino-shqiptare</h1>
+<p>Nga miqësia historike te bashkëpunimi ndërkombëtar modern.</p>
+</div>
+</section>
+
+
+<section class="section">
+<h2 class="section-title">Kronologjia e Shkëmbimeve Kinë-Shqipëri</h2>
+<p class="section-sub">中国—阿尔巴尼亚交流时间轴｜Kronologjia e shkëmbimeve Kinë-Shqipëri. Kjo kronologji thekson miqësinë, kulturën, filmin, arsimin dhe komunikimin ndërkombëtar.</p>
+
+<div class="timeline-item">
+<span class="timeline-label">Diplomaci · Diplomacia</span>
+<h3>1949｜中华人民共和国与阿尔巴尼亚建交</h3>
+<h3>1949｜Vendosja e marrëdhënieve diplomatike</h3>
+<p>1949年11月23日，阿尔巴尼亚正式承认中华人民共和国，并与中国建立外交关系，成为最早承认新中国的欧洲国家之一。</p>
+<p>Më 23 nëntor 1949, Shqipëria njohu Republikën Popullore të Kinës dhe vendosi marrëdhënie diplomatike me të. Shqipëria u bë një nga vendet e para europiane që njohu Kinën e re.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Ambasada · Ambasadat</span>
+<h3>1954｜两国互设大使馆</h3>
+<h3>1954｜Hapja e ambasadave reciproke</h3>
+<p>1954年，中阿两国正式互设大使馆，双边关系进入更加制度化、稳定化的发展阶段。</p>
+<p>Në vitin 1954, Kina dhe Shqipëria hapën ambasadat reciproke. Marrëdhëniet dypalëshe hynë në një fazë më të qëndrueshme dhe më të institucionalizuar.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Kulturë · Kultura</span>
+<h3>1950年代｜早期文化与教育交流展开</h3>
+<h3>Vitet 1950｜Fillimi i shkëmbimeve kulturore dhe arsimore</h3>
+<p>建交后，两国在外交、教育、出版、文化访问和人员往来等方面逐步建立联系，为之后更广泛的文明交流奠定基础。</p>
+<p>Pas vendosjes së marrëdhënieve diplomatike, të dy vendet nisën lidhje në diplomaci, arsim, botime, vizita kulturore dhe shkëmbime njerëzore, duke krijuar bazën për dialog më të gjerë qytetërimor.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1959｜阿尔巴尼亚电影《塔娜》被译制进入中国</h3>
+<h3>1959｜Filmi shqiptar “Tana” përkthehet dhe shfaqet në Kinë</h3>
+<p>《塔娜》（Tana）是阿尔巴尼亚重要早期故事片之一。中国上海电影译制厂于1959年前后译制该片，使阿尔巴尼亚电影较早进入中国观众视野。</p>
+<p>“Tana” është një nga filmat e rëndësishëm të hershëm shqiptarë. Rreth vitit 1959, filmi u përkthye dhe u dublua në Kinë, duke e prezantuar kinemanë shqiptare tek publiku kinez.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Zhvillim · Zhvillimi</span>
+<h3>1958—1960年代｜经济技术与工业建设合作加强</h3>
+<h3>1958—vitet 1960｜Forcimi i bashkëpunimit ekonomik dhe teknik</h3>
+<p>中国向阿尔巴尼亚提供经济与技术合作支持，涉及工业、农业、电力、交通、医疗等领域。许多中国工程师、技术人员和专家参与相关项目。</p>
+<p>Kina ofroi mbështetje ekonomike dhe teknike për Shqipërinë në industri, bujqësi, energji, transport dhe mjekësi. Shumë inxhinierë dhe specialistë kinezë morën pjesë në këto projekte.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1960年代｜中国电影在阿尔巴尼亚传播</h3>
+<h3>Vitet 1960｜Përhapja e filmave kinezë në Shqipëri</h3>
+<p>20世纪60年代，中国电影、戏剧电影和文艺作品开始在阿尔巴尼亚产生影响，成为阿尔巴尼亚公众认识中国的重要窗口。</p>
+<p>Në vitet 1960, filmat kinezë dhe veprat artistike kineze filluan të ndikojnë në Shqipëri dhe u bënë një dritare e rëndësishme për publikun shqiptar për të njohur Kinën.</p>
+<ul>
+<li>《白毛女》：电影版1950年；在阿传播后成为中国文艺形象的重要代表。</li>
+<li>“Vajza me flokë të bardha”: filmi u realizua në vitin 1950 dhe u bë një simbol i rëndësishëm i artit kinez.</li>
+<li>《红色娘子军》：故事片1961年；芭蕾舞剧1964年；舞剧电影1971年。</li>
+<li>“Detashmenti i Kuq i Grave”: filmi artistik 1961; baleti 1964; filmi i baletit 1971.</li>
+</ul>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1965｜中国电影《地道战》上映并传播</h3>
+<h3>1965｜Filmi kinez “Lufta e tuneleve”</h3>
+<p>《地道战》于1965年在中国上映，之后作为中国战争电影和群众叙事的代表作品之一被介绍到阿尔巴尼亚。</p>
+<p>Filmi “Lufta e tuneleve” u shfaq në Kinë në vitin 1965 dhe më pas u prezantua në Shqipëri si një nga filmat përfaqësues të rrëfimit popullor kinez.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1966—1967｜阿尔巴尼亚电影《海岸风雷》进入中国</h3>
+<h3>1966—1967｜Filmi shqiptar “Oshëtimë në bregdet” në Kinë</h3>
+<p>《海岸风雷》（Oshëtimë në bregdet）由阿尔巴尼亚新电影制片厂于1966年出品。中国译制工作大约在1967年完成，随后在中国公映，成为中国观众熟悉的阿尔巴尼亚经典电影之一。</p>
+<p>“Oshëtimë në bregdet” u prodhua në Shqipëri në vitin 1966. Rreth vitit 1967, filmi u dublua dhe u shfaq në Kinë, duke u kthyer në një nga filmat klasikë shqiptarë më të njohur për publikun kinez.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1967—1969｜阿尔巴尼亚电影《宁死不屈》在中国放映</h3>
+<h3>1967—1969｜Filmi shqiptar “Ngadhnjim mbi vdekjen” në Kinë</h3>
+<p>《宁死不屈》（Ngadhnjim mbi vdekjen）于1967年拍摄，1968年在阿尔巴尼亚公映，1969年被引进中国并在全国范围内放映。影片中的女主人公形象给许多中国观众留下深刻记忆。</p>
+<p>“Ngadhnjim mbi vdekjen” u xhirua në vitin 1967, u shfaq në Shqipëri në vitin 1968 dhe u prezantua në Kinë në vitin 1969. Figura e heroinave të filmit la përshtypje të thellë tek shumë shikues kinezë.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1968—1970｜更多阿尔巴尼亚影片进入中国观众视野</h3>
+<h3>1968—1970｜Më shumë filma shqiptarë në kinematë kineze</h3>
+<p>20世纪60年代末至70年代初，阿尔巴尼亚电影在中国译制片中占有重要位置。除《海岸风雷》《宁死不屈》外，《地下游击队》《创伤》《广阔的地平线》等影片也被译介或放映。</p>
+<p>Nga fundi i viteve 1960 deri në fillim të viteve 1970, filmat shqiptarë zunë një vend të rëndësishëm në kinematë kineze. Përveç “Oshëtimë në bregdet” dhe “Ngadhnjim mbi vdekjen”, u prezantuan edhe filma si “Guerilët”, “Plagë të vjetra” dhe “Horizonte të hapura”.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">OKB · OKB</span>
+<h3>1971｜阿尔巴尼亚支持中国恢复联合国合法席位</h3>
+<h3>1971｜Shqipëria mbështet rikthimin e Kinës në OKB</h3>
+<p>1971年10月25日，联合国大会通过第2758号决议，中华人民共和国恢复在联合国的合法席位。阿尔巴尼亚长期支持中国恢复联合国席位，是这一历史进程中的重要支持者。</p>
+<p>Më 25 tetor 1971, Asambleja e Përgjithshme e OKB-së miratoi Rezolutën 2758 dhe Republika Popullore e Kinës rifitoi vendin e saj të ligjshëm në OKB. Shqipëria ishte një mbështetëse e rëndësishme në këtë proces historik.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1970—1974｜阿尔巴尼亚电影在中国形成文化记忆</h3>
+<h3>1970—1974｜Filmat shqiptarë bëhen pjesë e kujtesës kulturore në Kinë</h3>
+<p>70年代初，阿尔巴尼亚电影在中国放映频率较高，成为一代中国观众的重要文化记忆。代表作品包括《第八个是铜像》（I teti në bronz，1970）、《脚印》《勇敢的人们》《战斗的早晨》等。</p>
+<p>Në fillim të viteve 1970, filmat shqiptarë u shfaqën shpesh në Kinë dhe u bënë pjesë e kujtesës kulturore të një brezi shikuesish kinezë. Ndër filmat e njohur ishin “I teti në bronz” (1970), “Gjurmë”, “Njerëz të guximshëm” dhe “Mëngjese lufte”.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Film · Filmi</span>
+<h3>1974｜中国电影《闪闪的红星》上映</h3>
+<h3>1974｜Filmi kinez “Ylli i kuq”</h3>
+<p>中国电影《闪闪的红星》于1974年上映。影片中的少年英雄形象具有鲜明的时代特征，也成为中国电影对外文化传播中的代表性符号之一。</p>
+<p>Filmi kinez “Ylli i kuq” u shfaq në vitin 1974. Figura e heroit të ri u bë një simbol i veçantë i kinemasë kineze dhe i komunikimit kulturor të asaj periudhe.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Bashkëpunim · Bashkëpunimi</span>
+<h3>1980年代｜保持传统友好联系</h3>
+<h3>Vitet 1980｜Ruajtja e lidhjeve miqësore tradicionale</h3>
+<p>在国际环境变化的背景下，两国继续保持外交联系。传统友谊成为之后关系恢复和合作扩展的重要基础。</p>
+<p>Në një mjedis ndërkombëtar në ndryshim, të dy vendet vazhduan të ruanin lidhje diplomatike. Miqësia tradicionale u bë bazë për zhvillimin e mëvonshëm të bashkëpunimit.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Ekonomi · Ekonomia</span>
+<h3>1989｜经济技术合作恢复</h3>
+<h3>1989｜Rifillimi i bashkëpunimit ekonomik dhe teknik</h3>
+<p>1989年，中阿双方重新加强经济技术合作，为双边关系注入新的发展动力。</p>
+<p>Në vitin 1989, Kina dhe Shqipëria riforcuan bashkëpunimin ekonomik dhe teknik, duke i dhënë marrëdhënieve dypalëshe një shtysë të re.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Epokë e re · Epoka e re</span>
+<h3>1990年代｜双边关系进入多元发展阶段</h3>
+<h3>Vitet 1990｜Marrëdhëniet hyjnë në një fazë më të larmishme</h3>
+<p>阿尔巴尼亚社会转型后，中阿关系逐步转向更加多元的国家间合作，合作领域包括经贸、教育、文化、人员往来和地方交流等。</p>
+<p>Pas transformimeve shoqërore në Shqipëri, marrëdhëniet kino-shqiptare u zhvilluan në një drejtim më të larmishëm, duke përfshirë tregtinë, arsimin, kulturën, shkëmbimet njerëzore dhe bashkëpunimin vendor.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Dokument · Dokumenti</span>
+<h3>1996｜中阿发表联合公报</h3>
+<h3>1996｜Publikimi i komunikatës së përbashkët</h3>
+<p>1996年，中阿双方发表联合公报，进一步确认发展双边关系的意愿。</p>
+<p>Në vitin 1996, Kina dhe Shqipëria publikuan një komunikatë të përbashkët, duke riafirmuar vullnetin për zhvillimin e marrëdhënieve dypalëshe.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Arsim · Arsimi</span>
+<h3>2000年代｜教育、语言与文化交流拓展</h3>
+<h3>Vitet 2000｜Zgjerimi i shkëmbimeve arsimore, gjuhësore dhe kulturore</h3>
+<p>进入21世纪后，两国在高校合作、语言学习、文化访问、青年交流等方面不断拓展。汉语学习与中国文化活动逐渐成为阿尔巴尼亚了解中国的重要渠道。</p>
+<p>Pas hyrjes në shekullin XXI, bashkëpunimi në arsimin e lartë, mësimin e gjuhës, vizitat kulturore dhe shkëmbimet rinore u zgjerua. Mësimi i gjuhës kineze dhe aktivitetet kulturore kineze u bënë kanale të rëndësishme për njohjen e Kinës në Shqipëri.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Brez dhe Rrugë · Nisma</span>
+<h3>2013以后｜“一带一路”背景下合作拓展</h3>
+<h3>Pas vitit 2013｜Zgjerimi i bashkëpunimit në kuadër të “Një Brez, Një Rrugë”</h3>
+<p>“一带一路”倡议提出后，中阿在基础设施、经贸、文化、教育、旅游和国际传播等领域拥有更多合作空间。</p>
+<p>Pas propozimit të nismës “Një Brez, Një Rrugë”, Kina dhe Shqipëria fituan më shumë hapësirë bashkëpunimi në infrastrukturë, tregti, kulturë, arsim, turizëm dhe komunikim ndërkombëtar.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Media · Mediat</span>
+<h3>2019｜中阿广播电视与影视内容合作</h3>
+<h3>2019｜Bashkëpunimi në radio, televizion dhe përmbajtje filmike</h3>
+<p>2019年，中国与阿尔巴尼亚在广播电视和影视内容交流方面签署合作文件，为两国观众了解彼此社会文化提供了新的媒体渠道。</p>
+<p>Në vitin 2019, Kina dhe Shqipëria nënshkruan dokumente bashkëpunimi në fushën e radios, televizionit dhe përmbajtjeve filmike, duke krijuar kanale të reja mediatike për njohjen e ndërsjellë kulturore.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">Digital · Digjital</span>
+<h3>2020年代｜数字传播与青年交流时代</h3>
+<h3>Vitet 2020｜Epoka e komunikimit digjital dhe shkëmbimeve rinore</h3>
+<p>短视频、社交媒体和双语内容正在成为中阿文明交流的新方式。TikTok、YouTube、Instagram、小红书等平台使中国城市生活、中国文化知识和青年跨文化交流更容易触达阿尔巴尼亚语受众。</p>
+<p>Videot e shkurtra, mediat sociale dhe përmbajtjet dygjuhëshe po bëhen forma të reja të shkëmbimit qytetërimor Kinë-Shqipëri. Platformat si TikTok, YouTube, Instagram dhe Rednote e bëjnë më të lehtë prezantimin e jetës urbane kineze, njohurive kulturore dhe komunikimit rinor tek publiku shqipfolës.</p>
+</div>
+
+<div class="timeline-item">
+<span class="timeline-label">MegjiKina · Sot</span>
+<h3>今天｜以社交媒体连接中国与世界</h3>
+<h3>Sot｜Duke lidhur Kinën me botën përmes mediave sociale</h3>
+<p>在新时代，中阿文化交流不再只依赖官方访问和传统媒体，也通过个人账号、青年创作者、短视频和跨语言内容进行传播。MegjiKina 等平台可以成为连接中国文化与阿尔巴尼亚语世界的重要窗口。</p>
+<p>Në epokën e re, shkëmbimet kulturore nuk varen vetëm nga vizitat zyrtare dhe mediat tradicionale, por zhvillohen edhe përmes llogarive personale, krijuesve të rinj, videove të shkurtra dhe përmbajtjeve ndërgjuhësore. Platforma si MegjiKina mund të shërbejnë si dritare të rëndësishme që lidhin kulturën kineze me botën shqipfolëse.</p>
+</div>
+
+</section>
+
+
+<footer class="footer"><p>Historical Narrative of China–Albania Relations</p></footer>
+</body></html>
